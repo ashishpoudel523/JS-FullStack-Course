@@ -73,8 +73,8 @@ Isolating work in branches, changing context, and integrating changes
 
 Examining logs, diffs and object information
 
-(1) git log
-= show the commit history for the currently active branch
+(1) git log --oneline
+= show the commit history for the currently active branch (short form)
 
 
 # SHARE & UPDATE
