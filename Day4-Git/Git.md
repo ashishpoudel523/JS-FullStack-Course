@@ -90,6 +90,7 @@ Eg.: git remote add origin https://github.com/ap/project1
 
 (3) git merge [alias]/[branch]
 = merge a remote branch into your current branch to bring it up to date
+= Context: If you are currently on your local main branch, this command takes the new updates from the upstream remote's main branch and weaves them into your work.
 
 (4) git push [alias] [branch]
 = Transmit local branch commits to the remote repository branch
