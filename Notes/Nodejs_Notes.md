@@ -8,7 +8,7 @@ provides a set of asynchronous I/O primitives
 performs an I/O operation, like reading from the network, accessing a database or the filesystem, instead of blocking the thread and wasting CPU cycles waiting, Node.js will resume the operations when the response comes back.
 When modules created by other developers are used in our code, they're called dependencies.
 
-# NPM = for package management / command line tool to install, create, and share packages, dependencies of JavaScript code written for Node.js
+# NPM (node package manager)= for package management / command line tool to install, create, and share packages, dependencies of JavaScript code written for Node.js
 
 popular Node.js package is nodemon, a tool used to automatically restart a program when a file changes, alleviating the need to do so manually each time you save a file
 
@@ -43,7 +43,7 @@ Some are events, os, error, buffer, fs, and timer modules
 
 # Express is nodejs web framework that will allow you to start and configure a server with very little overhead so you can focus on the important work of defining server behavior.
 
-EJS (js+html+additional features) = npm i ejs for embedded javascript
+EJS = embedded js = (js+html+additional features) = npm i ejs for embedded javascript
 for that
 app.set('view engine', 'ejs')
 

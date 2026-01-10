@@ -1,7 +1,15 @@
+**_2026/1/10_**
+
 # ReactJS
 
 front-end library maintained by Facebook.
 It was released on May 29, 2013
+
+React is a JavaScript library for building user interfaces.
+
+React is used to build single-page applications.
+
+React allows us to create reusable UI components.
 
 Creating a React app using Vite is a great alternative to Create React App, offering a faster and more modern development experience. Vite is a build tool that focuses on speed and performance, making it an excellent choice for modern web development.
 
@@ -18,6 +26,12 @@ Instant Hot Module Replacement (HMR): Changes reflect instantly without losing t
 Optimized Build: Vite uses Rollup for optimized production builds.
 Modern Features: It leverages ES modules, which modern browsers support natively.
 Steps to Create a React App Using Vite
+
+# How does React Work?
+
+React creates a VIRTUAL DOM in memory.
+
+Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
 
 # Here’s a step-by-step guide to creating a React app using Vite:
 
@@ -38,9 +52,13 @@ While creating react project if you don't want to create new folder as a new pro
 
 Replace my-app with your desired project name.
 
+<!--
 npm install
 
 npm run dev
+-->
+
+**_jsx = javascript xml = allows developers to write HTML-like markup directly within JavaScript code, most notably in the React library_**
 
 # The Virtual DOM
 

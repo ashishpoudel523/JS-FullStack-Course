@@ -1,8 +1,5 @@
-<script>
-
 Git is the free and open source distributed version control system that's responsible for everything GitHub
-related that happens locally on your computer.  
-
+related that happens locally on your computer.
 
 # SETUP
 
@@ -14,7 +11,6 @@ Configuring user information used across all local repositories
 (2) git config--global user.email “[valid - email]”
 = set an email address that will be associated with each history marker
 
-
 # SETUP AND INIT
 
 Configuring user information, initializing and cloning repositories
@@ -24,7 +20,6 @@ Configuring user information, initializing and cloning repositories
 
 (2) git clone [url]
 = retrieve an entire repository from a hosted location via URL
-
 
 # STAGE & SNAPSHOT
 
@@ -48,13 +43,12 @@ Working with snapshots and the Git staging area
 (6) git commit -m “[descriptive message]”
 commit your staged content as a new commit snapshot
 
-
 # BRANCH & MERGE
 
 Isolating work in branches, changing context, and integrating changes
 
 (1) git branch
-= list your branches. a * will appear next to the currently active branch
+= list your branches. a \* will appear next to the currently active branch
 
 (2) git branch [branch-name]
 = create a new branch at the current commit
@@ -68,14 +62,12 @@ Isolating work in branches, changing context, and integrating changes
 (5) git log
 = show all commits in the current branch’s history
 
-
 # INSPECT AND COMPARE
 
 Examining logs, diffs and object information
 
 (1) git log --oneline
 = show the commit history for the currently active branch (short form)
-
 
 # SHARE & UPDATE
 
@@ -98,8 +90,6 @@ Eg.: git remote add origin https://github.com/ap/project1
 (5) git pull
 = fetch and merge any commits from the tracking remote branch
 
-
-
 # REWRITE HISTORY
 
 Rewriting branches, updating commits and clearing history
@@ -110,8 +100,6 @@ Rewriting branches, updating commits and clearing history
 (2) git reset --hard [commit]
 = clear staging area, rewrite working tree from specified commit
 
-
-
 # TEMPORARY COMMITS
 
 Temporarily store modified, tracked files in order to change branches
@@ -119,4 +107,5 @@ Temporarily store modified, tracked files in order to change branches
 (1) git stash
 = Save modified and staged changes
 
-</script>
+(2) git stash pop
+= unstage changes
