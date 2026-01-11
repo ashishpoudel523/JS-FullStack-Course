@@ -1,0 +1,44 @@
+.body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
+}
+
+button {
+  background-color: red;
+  min-width: 100px;
+  max-width: 200px;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.btnn-sm {
+  height: 20px;
+  min-width: 50px;
+  max-width: 150px;
+}
+
+.btnn-md {
+  height: 40px;
+  min-width: 80px;
+  max-width: 150px;
+}
+
+.btnn-lrg {
+  height: 60px;
+  min-width: 100px;
+  max-width: 150px;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.btn-secondary {
+  background-color: green;
+}
+
+.btn-primary {
+  background-color: blue;
+}
