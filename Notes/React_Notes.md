@@ -19,20 +19,6 @@ npx create-react-app my-frontend-app
 cd my-frontend-app
 npm start
 
-# Why Choose Vite?
-
-Fast Development Server: Vite provides a lightning-fast development server.
-Instant Hot Module Replacement (HMR): Changes reflect instantly without losing the application state.
-Optimized Build: Vite uses Rollup for optimized production builds.
-Modern Features: It leverages ES modules, which modern browsers support natively.
-Steps to Create a React App Using Vite
-
-# How does React Work?
-
-React creates a VIRTUAL DOM in memory.
-
-Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
-
 # Here’s a step-by-step guide to creating a React app using Vite:
 
 Install Node.js: Ensure you have Node.js installed on your machine. You can download it from nodejs.org.
@@ -41,6 +27,7 @@ Install Node.js: Ensure you have Node.js installed on your machine. You can down
 
 npm create vite@latest my-app --template react
 OR,
+
 npm create vite@latest
 project name:
 Select React
@@ -59,6 +46,20 @@ npm run dev
 -->
 
 **_jsx = javascript xml = allows developers to write HTML-like markup directly within JavaScript code, most notably in the React library_**
+
+# Why Choose Vite?
+
+Fast Development Server: Vite provides a lightning-fast development server.
+Instant Hot Module Replacement (HMR): Changes reflect instantly without losing the application state.
+Optimized Build: Vite uses Rollup for optimized production builds.
+Modern Features: It leverages ES modules, which modern browsers support natively.
+Steps to Create a React App Using Vite
+
+# How does React Work?
+
+React creates a VIRTUAL DOM in memory.
+
+Instead of manipulating the browser's DOM directly, React creates a virtual DOM in memory, where it does all the necessary manipulating, before making the changes in the browser DOM.
 
 # The Virtual DOM
 
@@ -205,7 +206,8 @@ useEffect(() => {
 console.log("Component mounted");
 }, []);
 
-(c) useEffect with Specific Dependencies Array (Runs When Dependencies Change):
+# (c) useEffect with Specific Dependencies Array (Runs When Dependencies Change):
+
 Runs only when certain values change. Good for reacting to specific changes.
 
 useEffect(() => {
