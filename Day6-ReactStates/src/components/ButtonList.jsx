@@ -1,58 +1,72 @@
 import { useState } from "react";
-import { MyButton } from "./MyButton";
+import Button from "./Button";
 import { convertDate } from "../utils/date";
 
+// Smart component
+// ✔ Owns state
+// ✔ Owns event handlers
+// ✔ Coordinates child components
 function ButtonList() {
-  console.log("re-render vayo");
-
-  const [title, setTitle] = useState("old title");
-  const [descript, setDescript] = useState();
+  // State triggers re-render when updated
+  const [title, setTitle] = useState("Old Title");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date().toISOString());
 
-  const currentDate = new Date().toISOString();
-
-  function primaryFunction() {
+  // Event handler: updates state → causes re-render
+  const handlePrimaryClick = () => {
     setTitle("New Title");
-    console.log("PrimaryButton clicked");
-  }
+  };
 
-  function dangerFunction() {
-    console.log(convertDate(currentDate));
-    setDate(convertDate(currentDate));
-    console.log("DangerButton clicked");
-  }
+  // Uses utility function (logic separated from UI)
+  const handleDangerClick = () => {
+    setDate(convertDate(new Date().toISOString()));
+  };
 
-  function secondaryFunction() {
-    setDescript("New Description");
-    console.log("SecondaryButton clicked");
-  }
+  // Another independent state update
+  const handleSecondaryClick = () => {
+    setDescription("New Description");
+  };
 
   return (
-    <>
-      {/* To write js espressions inside jsx, use { } */}
+    <div>
+      {/* UI reflects current state */}
       <h1>{title}</h1>
-      <div>{descript}</div>
+      <p>{description}</p>
       <p>{date}</p>
-      <MyButton
-        title="click me"
-        varient="primary"
+
+      {/* Events flow UP, UI flows DOWN */}
+      <Button
+        title="Primary"
+        variant="primary"
         size="sm"
-        onClick={primaryFunction}
+        onClick={handlePrimaryClick}
       />
-      <MyButton
-        title="click me 2"
-        varient="danger"
+
+      <Button
+        title="Danger"
+        variant="danger"
         size="md"
-        onClick={dangerFunction}
+        onClick={handleDangerClick}
       />
-      <MyButton
-        title="click me 3"
-        varient="secondary"
-        size="lrg"
-        onClick={secondaryFunction}
+
+      <Button
+        title="Secondary"
+        variant="secondary"
+        size="lg"
+        onClick={handleSecondaryClick}
       />
-    </>
+    </div>
   );
 }
 
-export { ButtonList };
+export default ButtonList;
+
+/* Revision notes (very important):
+
+State lives where it changes
+
+Buttons don’t change state — handlers do
+
+Parent controls behavior, child just triggers events
+
+*/

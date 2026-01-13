@@ -1,53 +1,66 @@
 import { useEffect, useState } from "react";
 
-async function getData() {
-  const url = "https://jsonplaceholder.typicode.com/todos";
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`Response status: ${response.status}`);
-  }
-  const json = await response.json();
-  return json;
-}
-
 function App() {
-  const [count, setCount] = useState(0);
+  // State to store fetched data
+  // State to control loading UI
+  // State to store error message (IMPORTANT)
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const [todos, setTodos] = useState(null);
-
-  const [error, setError] = useState("");
-
-  //fetch API function
-  useEffect(() => {}, []);
-
-  //it runs when count (i.e. dependency array) changes
   useEffect(() => {
-    console.log("I am useEffect");
-  }, [count]);
+    // ❌ useEffect callback itself CANNOT be async
+    // ✔ define async function inside it
+    async function fetchTodos() {
+      try {
+        // API call
+        const response = await fetch(
+          "https://jsonplaceholder.typicode.com/todos"
+        );
 
-  async function handleTodo() {
-    try {
-      const todos = await getData();
-      setTodos(todos);
-    } catch (error) {
-      setError(error.message);
+        // Always check response.ok
+        // fetch DOES NOT throw error for 404/500 by default
+        if (!response.ok) {
+          throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        // Convert response to JS object
+        const data = await response.json();
+
+        // Update state → triggers re-render
+        setTodos(data.slice(0, 5));
+      } catch (err) {
+        // Store error message for UI
+        setError(err.message);
+
+        // Still log for debugging
+        console.error(err);
+      } finally {
+        // Runs whether success or error
+        setLoading(false);
+      }
     }
-  }
+
+    // Call the async function
+    fetchTodos();
+  }, []); // [] → runs only once when component mounts
+
+  // Loading state UI
+  if (loading) return <p>Loading...</p>;
+
+  // Error state UI
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
 
   return (
-    <>
-      <h1>Hello</h1>
-      {error ? <p style={{ color: "red" }}>Error: {error}</p> : null}
-      <p>First todo title: {todos?.[5].title}</p>
-      <button onClick={handleTodo}>Get the Todo</button>
-      <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        Count = {count}
-      </button>
-    </>
+    <div>
+      <h2>Todos</h2>
+      <ul>
+        {/* key is REQUIRED when rendering lists */}
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

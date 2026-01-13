@@ -1,38 +1,16 @@
-import { ButtonList } from "./components/ButtonList.jsx";
-import { MyButton } from "./components/MyButton.jsx";
+import ButtonList from "./components/ButtonList";
+import Car from "./components/Car";
 
+// Root component should ONLY compose other components
+// ❌ No state
+// ❌ No business logic
 function App() {
   return (
     <>
       <ButtonList />
-      Form : <input type="number" />
-      <br />
       <Car brand="BYD" model="Mustang" />
     </>
   );
 }
 
-/* CAR COMPONENT */
-function Car({ brand, model }) {
-  const btnStyle = {
-    backgroundColor: "black",
-    color: "white",
-  };
-
-  return (
-    <>
-      <button
-        style={btnStyle}
-        className="btn-primary"
-        onClick={() => alert("Clicked!")}
-      >
-        Button from Car function
-      </button>
-      <p>
-        I am a {brand} car and {model} model.
-      </p>
-    </>
-  );
-}
-
-export { App };
+export default App;
