@@ -149,10 +149,9 @@ Purpose: Manages state in functional components.
 
 When calling the useState() function, you can pass an argument that will serve as the initial value of the state. The function then returns an array with two elements.
 
-The first element holds the state value, and the second element is a function that allows you to change the state value. You need to use the destructuring array syntax to receive both elements as shown above
+The first element holds the state value, and the second element is a function that allows you to change the state value. You need to use the destructuring array syntax to receive both elements like this :
 
-You can give any names to the variables returned by useState, but it's recommended to use
-const [state, setState] = useState(initialValue);
+const [value, setValue] = userState(initialValue)
 
 To render the state value, you can embed it into JSX as follows:
 
@@ -251,18 +250,132 @@ Example:
 const inputRef = useRef(null);
 inputRef.current.focus(); // Accesses the DOM element
 
+# Axios
+
+Axios is a popular JS promise-based HTTP client library used in React, Nodejs.
+Axios in React - The King of HTTP Clients
+
+To install:
+npm i axios
+
+Why Axios over fetch?
+
+- Automatic JSON parsing
+- Better error handling
+- Request/response interceptors
+- Cleaner syntax
+
+Example:
+import axios from "axios";
+
+async function getUserData() {
+try {
+const url = "https://jsonplaceholder.typicode.com/posts";
+
+    const response = await axios.get(url);
+
+    return response.data;
+
+} catch (err) {
+console.log({ err });
+throw err;
+}
+}
+
+export { getUserData };
+
+# Axios Instance
+
+An Axios instance allows you to create a custom configuration for your HTTP requests, such as setting a base URL, custom headers, or timeout. This is useful when you're working with the same API across different parts of your app.
+
+Here's how to create and use an Axios instance:
+EXAMPLE : -
+
+// File : users.js
+import axios from "axios";
+
+//create an instance
+const instance = axios.create({
+baseURL: 'https://jsonplaceholder.typicode.com',
+headers: {
+'Content-Type': 'application/json',
+},
+timeout: 3000,
+})
+
+// Use the instance to make requests
+async function getUserData() {
+const resource = '/posts'
+try {
+const response = await instance.get(resource);
+return response.data;
+} catch (err) {
+console.log({ err });
+throw err;
+}
+}
+
+export { getUserData };
+
+// File: App.jsx
+
+const [user, setUser] = useState(" ")
+
+<button onClick={() => apiCall()}> Fetch User from API </button>
+
+// jsoplaceholder bata users fetch garni function
+const apiCall = async () => {
+try {
+const users = await getUserData();
+console.log({ users });
+
+      setUser(users[3]);
+    } catch (e) {
+      console.log({ e });
+    }
+
+};
+
+// mathi ko "API" wala Button click garda, api bata user ko number 4 html ma print huna paryo
+
+Username from API = {user?.name} <br />
+
+# to prevent page reload, we use e.preventDefault()
+
+It stops page from reloading after pressing submit button.
+
+Eg.:
+function handleSubmit(e) {
+e.preventDefault();
+console.log({ name, address, email });
+}
+
+# 2 way binding
+
+Two-Way Binding in React (Controlled Components)
+Value comes from state → state updates on change.
+
+Use case = managing user input in forms and ensuring UI elements stay synchronized with the underlying data
+
+Two way binding = state bata remove or add vako kura UI ma ni reflect huna value = {} use garni, submit garera sakesi, form ko UI pani clear garna lai use hunxa
+
+const [name, setName] = useState("");
+
+<form>
+<input
+value={name}
+onChange={(e) => setName(e.target.value)}
+/>
+</form>
+
+<p>Hello {name}!</p>
+
 # Tailwind CSS
 
 # Install Tailwind CSS with React Vite
 
 npm install -D tailwind postcss autoprefiser
 npx tailwindcss init -p
-
-# axios
-
-npm i axios
-
-Promise based HTTP client for the browser and node.js for node + react project
 
 # React
 
