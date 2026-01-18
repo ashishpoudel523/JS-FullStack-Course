@@ -90,7 +90,7 @@ const App = () => {
           placeholder="email"
           value={email}
           onChange={(e) => {
-            setEmail(e.target.vaalue);
+            setEmail(e.target.value);
           }}
           required
         />
