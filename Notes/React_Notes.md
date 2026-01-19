@@ -250,6 +250,16 @@ Example:
 const inputRef = useRef(null);
 inputRef.current.focus(); // Accesses the DOM element
 
+# to prevent page reload, we use e.preventDefault()
+
+It stops page from reloading after pressing submit button.
+
+Eg.:
+function handleSubmit(e) {
+e.preventDefault();
+console.log({ name, address, email });
+}
+
 # Axios
 
 Axios is a popular JS promise-based HTTP client library used in React, Nodejs.
@@ -340,16 +350,6 @@ console.log({ users });
 
 Username from API = {user?.name} <br />
 
-# to prevent page reload, we use e.preventDefault()
-
-It stops page from reloading after pressing submit button.
-
-Eg.:
-function handleSubmit(e) {
-e.preventDefault();
-console.log({ name, address, email });
-}
-
 # 2 way binding
 
 Two-Way Binding in React (Controlled Components)
@@ -369,6 +369,90 @@ onChange={(e) => setName(e.target.value)}
 </form>
 
 <p>Hello {name}!</p>
+
+# Props Drilling
+
+Props Drilling is a common situation in React where you pass data or functions through multiple layers of components just to reach a deeply nested component that actually needs it. This can make the code harder to maintain and understand because intermediate components receive props they don’t directly use—they only pass them down.
+
+For example, if you have a parent component passing data to a grandchild, the intermediate child component must accept and forward those props even if it doesn’t need them.
+
+Solution = State Management, Context API
+
+# Passing props to parent from children (Lifting State Up)
+
+Passing props from a child component to a parent in React is done by having the parent provide a function (callback) as a prop to the child. The child calls this function and can pass data as arguments, effectively sending data "up" to the parent.
+
+# Cleanup Function - prevents bugs and leaks
+
+A cleanup function in React is a function you return inside the useEffect hook to clean up or undo side effects when a component unmounts or before the effect runs again. It helps prevent memory leaks, cancel timers, remove event listeners, or abort network requests.
+
+Why is it important?
+
+- Prevents unwanted behavior when a component unmounts.
+- Frees resources like timers or subscriptions.
+- Avoids updating state on unmounted components.
+
+EXAMPLE =
+
+useEffect(() => {
+console.log("hello");
+
+// cleanup function
+return () => {
+console.log("bye");
+};
+}, [parentCount]);
+
+# Debouncing - to stop hammering API
+
+Its technique used to control how often a function runs in response to rapid, continuous events like typing in a search bar or window resizing
+
+User types "react" in search box → don’t call API 5 times.
+Wait 1000ms of inactivity → then search.
+
+- Use case = Handling user input (e.g., search bars) to avoid making API calls on every keystroke.
+
+EXAMPLE =
+
+useEffect(() => {
+const timer = setTimeout(() => {
+setDebounceValue(inputValue);
+}, 1000);
+
+    return () => {
+      clearTimeout(timer); //debouncing
+    };
+
+}, [inputValue]);
+
+# CUSTOM HOOK - ABSTRACT LOGIC THAT CAN BE USED WHEREVER REQUIRED
+
+A Custom Hook in React is a reusable function that lets you extract and share stateful logic between components. It allows you to encapsulate common behaviors (like fetching data, handling forms, or managing timers) without duplicating code.
+
+Custom Hooks always start with the prefix "use"Something and can call other hooks internally. They help keep components clean, improve code organization, and promote reusability.
+
+Why use Custom Hooks?
+- To abstract and reuse complex logic.
+- To keep components focused on UI.
+
+EXAMPLE = 
+
+// CUSTOM HOOK = RESUABLE FUNCTION WITHOUT DUPLICATING CODE
+function useDebounce(inputValue, delay) {
+  const [debounceValue, setDebounceValue] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebounceValue(inputValue);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [delay, inputValue]);
+
+  return debounceValue;
+}
 
 # Tailwind CSS
 

@@ -3,7 +3,17 @@
   color: white;
   width: 220px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   margin: 5px;
-  display: block;
+
+  display: flex;
+  flex-direction: column; /* stack text vertically */
+  gap: 6px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; /* allows next row if space is less */
+  gap: 12px;
 }
