@@ -299,6 +299,7 @@ export { getUserData };
 An Axios instance allows you to create a custom configuration for your HTTP requests, such as setting a base URL, custom headers, or timeout. This is useful when you're working with the same API across different parts of your app.
 
 Here's how to create and use an Axios instance:
+
 EXAMPLE : -
 
 // File : users.js
@@ -432,27 +433,63 @@ A Custom Hook in React is a reusable function that lets you extract and share st
 Custom Hooks always start with the prefix "use"Something and can call other hooks internally. They help keep components clean, improve code organization, and promote reusability.
 
 Why use Custom Hooks?
+
 - To abstract and reuse complex logic.
 - To keep components focused on UI.
 
-EXAMPLE = 
+EXAMPLE =
 
 // CUSTOM HOOK = RESUABLE FUNCTION WITHOUT DUPLICATING CODE
 function useDebounce(inputValue, delay) {
-  const [debounceValue, setDebounceValue] = useState("");
+const [debounceValue, setDebounceValue] = useState("");
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebounceValue(inputValue);
-    }, delay);
+useEffect(() => {
+const timer = setTimeout(() => {
+setDebounceValue(inputValue);
+}, delay);
 
     return () => {
       clearTimeout(timer);
     };
-  }, [delay, inputValue]);
 
-  return debounceValue;
+}, [delay, inputValue]);
+
+return debounceValue;
 }
+
+# Derived State
+
+const [myName, setMyName] = useState("Ashish");
+const greeting = "Good morning " + myName
+
+// Derived state - derived from existing props or state, rather than stored separately
+// don't use "useEffect" coz it can lead to unnecessary complexity and bugs.
+
+# useMemo Hook = to cache expensive calculations
+
+- to keep variable to data in cache
+- useMemo also has dependency array
+- dependency array 1 choti matrai change huda run hunxa , next time ma paila kai cache value use garxa
+- This helps optimize performance by avoiding unnecessary recalculations on every render.
+- Useful for derived data that depends on props or state.
+
+- EXAMPLE =
+
+const id2User = useMemo(() => {
+const foundUser = users.find((item) => {
+console.log("find chalyo");
+if (item.id === 2) {
+return item;
+}
+});
+
+    return foundUser;
+
+}, [users]);
+
+# useCallback = to keep function cached
+
+= It lets us cache a function definition between re-renders.
 
 # Tailwind CSS
 
