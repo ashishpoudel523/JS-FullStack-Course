@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 function App() {
   const [myName, setMyName] = useState("Robin");
+
+  const [count, setCount] = useState(0);
 
   const [users, setUsers] = useState([
     {
@@ -31,7 +33,7 @@ function App() {
   });
   */
 
-  // INSTEAD USE useMemo = to keep data in cache
+  // INSTEAD USE useMemo = to cache/memoize value
   // useMemo also has dependency array
   // dependency array 1 choti matrai change huda run hunxa , next time ma paila kai cache value use garxa
   const id2User = useMemo(() => {
@@ -49,14 +51,19 @@ function App() {
     setMyName("Ashish");
   }
 
-  // useCallback hook  = to cache the whole function
+  // useCallback hook  = to cache/memoize the whole function
+  const callbackClick = useCallback(() => {
+    setCount((c) => c + 1);
+    alert("App rendered");
+  }, [count]);
 
   return (
     <>
       <h2>Hello All</h2>
       <p> {greeting} </p>
       <p> {id2User.name} </p>
-      <button onClick={handleClick}>Find User</button>
+      <button onClick={handleClick}>Find User - useMemo</button>
+      <button onClick={callbackClick}>useCallback Button</button>
     </>
   );
 }

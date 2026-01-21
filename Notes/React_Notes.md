@@ -467,7 +467,7 @@ const greeting = "Good morning " + myName
 
 # useMemo Hook = to cache expensive calculations
 
-- to keep variable to data in cache
+- to cache/memoize value
 - useMemo also has dependency array
 - dependency array 1 choti matrai change huda run hunxa , next time ma paila kai cache value use garxa
 - This helps optimize performance by avoiding unnecessary recalculations on every render.
@@ -489,7 +489,7 @@ return item;
 
 # useCallback = to keep function cached
 
-= It lets us cache a function definition between re-renders.
+= It lets us cache/memoize a function definition between re-renders.
 
 # Tailwind CSS
 
