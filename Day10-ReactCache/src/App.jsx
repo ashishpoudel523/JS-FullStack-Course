@@ -51,7 +51,9 @@ function App() {
     setMyName("Ashish");
   }
 
-  // useCallback hook  = to cache/memoize the whole function
+  // WITHOUT useCallback - creates new function every time component re-renders.
+
+  // useCallback hook  = to cache/memoize the whole function. This is created once and reused.
   const callbackClick = useCallback(() => {
     setCount((c) => c + 1);
     alert("App rendered");
@@ -63,7 +65,7 @@ function App() {
       <p> {greeting} </p>
       <p> {id2User.name} </p>
       <button onClick={handleClick}>Find User - useMemo</button>
-      <button onClick={callbackClick}>useCallback Button</button>
+      <button onClick={callbackClick}>useCallback Button = {count}</button>
     </>
   );
 }

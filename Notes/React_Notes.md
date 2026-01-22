@@ -491,6 +491,18 @@ return item;
 
 = It lets us cache/memoize a function definition between re-renders.
 
+// WITHOUT useCallback
+const sayHello = () => {
+alert('Hello!');
+};
+// ☝️ This is created NEW every time component re-renders
+
+// WITH useCallback
+const sayHello = useCallback(() => {
+alert('Hello!');
+}, []);
+// ☝️ This is created ONCE and reused
+
 # Tailwind CSS
 
 # Install Tailwind CSS with React Vite
