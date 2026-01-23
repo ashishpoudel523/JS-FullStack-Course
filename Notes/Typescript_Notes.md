@@ -112,3 +112,19 @@ type UserCardProps = {
 name: string;
 age?: number; // optional prop
 };
+
+# Static typing vs Dynamic Typing
+
+Static typing checks variable types during compilation, ensuring high performance and early error detection (e.g., Java, C++).
+
+Dynamic typing checks types at runtime, offering faster prototyping and greater flexibility (e.g., Python, JavaScript), but risks unexpected errors during execution.
+
+# Literal Types
+
+It allows us to specify the exact value a variable can hold.
+
+type Direction = "east" | "west" | "north" | "south"
+
+let move: Direction
+
+move = "south" // it's valid

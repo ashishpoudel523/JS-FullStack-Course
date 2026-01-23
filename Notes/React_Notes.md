@@ -373,11 +373,11 @@ onChange={(e) => setName(e.target.value)}
 
 # Props Drilling
 
-Props Drilling is a common situation in React where you pass data or functions through multiple layers of components just to reach a deeply nested component that actually needs it. This can make the code harder to maintain and understand because intermediate components receive props they don’t directly use—they only pass them down.
+Props Drilling is a common situation in React where you pass data or functions through multiple layers of components just to reach a deeply nested component that actually needs it. This can make the code harder to maintain and understand because intermediate components receive props they don’t directly use — they only pass them down.
 
 For example, if you have a parent component passing data to a grandchild, the intermediate child component must accept and forward those props even if it doesn’t need them.
 
-Solution = State Management, Context API
+Solution of prop drilling => State Management, Context API
 
 # Passing props to parent from children (Lifting State Up)
 
