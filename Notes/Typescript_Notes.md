@@ -119,6 +119,32 @@ Static typing checks variable types during compilation, ensuring high performanc
 
 Dynamic typing checks types at runtime, offering faster prototyping and greater flexibility (e.g., Python, JavaScript), but risks unexpected errors during execution.
 
+# Type-safe API Data
+
+The practice of designing and implementing APIs in a way that ensures the data exchanged between the client and the server adheres to explicitly defined types or schemas, preventing type-related errors at both compile-time and runtime. This approach improves data integrity, enhances the developer experience (DX), and reduces the risk of bugs.
+
+EXAMPLE:
+
+type TMovies = {
+id: string;
+budget: string;
+cast: string;
+createdAt: string;
+director: string;
+movie: string;
+};
+
+async function getMovies() {
+try {
+const res = await axios.get(
+"https://69733836b5f46f8b582687ec.mockapi.io/movies_app/movies",
+);
+return res.data as TMovies[];
+} catch (error) {
+throw new Error("Movies not found");
+}
+}
+
 # Literal Types
 
 It allows us to specify the exact value a variable can hold.
@@ -128,3 +154,11 @@ type Direction = "east" | "west" | "north" | "south"
 let move: Direction
 
 move = "south" // it's valid
+
+# Context API Providers and useContext
+
+Context API is React's built-in solution for sharing data across component trees without prop drilling (passing props through every level). It consists of:
+
+createContext() - Creates a context object
+Provider - Component that supplies the context value to its children
+useContext() - Hook that consumes the context value in any child component

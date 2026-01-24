@@ -503,6 +503,15 @@ alert('Hello!');
 }, []);
 // ☝️ This is created ONCE and reused
 
+
+# ContextAPI
+
+Context API is React's built-in solution for sharing data across component trees without prop drilling (passing props through every level). It consists of:
+
+createContext() - Creates a context object
+Provider - Component that supplies the context value to its children
+useContext() - Hook that consumes the context value in any child component
+
 # Tailwind CSS
 
 # Install Tailwind CSS with React Vite
