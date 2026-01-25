@@ -250,7 +250,7 @@ Example:
 const inputRef = useRef(null);
 inputRef.current.focus(); // Accesses the DOM element
 
-# to prevent page reload, we use e.preventDefault()
+# To prevent page reload, we use e.preventDefault()
 
 It stops page from reloading after pressing submit button.
 
@@ -503,14 +503,365 @@ alert('Hello!');
 }, []);
 // ☝️ This is created ONCE and reused
 
-
 # ContextAPI
 
 Context API is React's built-in solution for sharing data across component trees without prop drilling (passing props through every level). It consists of:
 
 createContext() - Creates a context object
 Provider - Component that supplies the context value to its children
+useContext() - Hook that consumes the context value in any child component.
+
+####################################################################################################################################################################################################################################################################################
+
+# TYPESCRIPT
+
+# TypeScript is a programming language that adds types to JavaScript.
+
+It allows us to write JavaScript with a set of tools called a type system that can spot potential bugs in, clarify the structure of, and help refactor our code.
+
+# TypeScript is a strongly typed superset of JavaScript which adds static typing.
+
+Typescript founder = Anders Hejlsberg
+
+# Why Typescript?
+
+- static Type (check variable's data type) Checking
+- Imporoved Developer Experience
+- Better COde Manitainablility
+- Early Bug Detection
+- Enhanced COllaboraton
+- Supports modern JS features
+
+We write TypeScript code in files with the extension .tsx.
+Next, we run our code through the TypeScript transpiler. The transpiler will check that the code adheres to TypeScript’s standards, and it will display errors when it does not.
+
+If the TypeScript code can be converted into working JavaScript, the transpiler will output a JavaScript version of the file (.js).
+
+TypeScript code is a superset of JavaScript code—it has all the features of traditional JavaScript but adds some new features.
+
+The first things we’ll discover with TypeScript is that when we declare a variable with an initial value, the variable can never be reassigned a value of a different data type.
+
+# Types and Interface
+
+In TypeScript, types and interfaces are two primary ways to define the shape of objects, function signatures, or more complex data structures. They help you enforce consistent data structures and enable type checking.
+
+# Types
+
+- Created using the "type" keyword.
+
+- Can define aliases for primitive types, unions, intersections, tuples, and object shapes.
+
+- Useful for defining complex or composite types.
+
+Example of simple type:
+
+type ID = number | string;
+type User = {
+id: ID;
+name: string;
+age?: number; // optional property
+};
+
+# Interfaces
+
+- Created using the interface keyword.
+
+- Used mainly to describe the shape of an object.
+
+- Can be extended or implemented by classes.
+
+- Supports declaration merging (interfaces with the same name merge).
+
+Example of simple interface:
+
+interface User {
+id: number;
+name: string;
+age?: number; // optional property
+}
+
+# Differences
+
+- Both can describe object shapes similarly.
+
+- Interfaces can be extended or merged; types are more flexible (can represent unions, primitives).
+
+- Use interfaces for defining object contracts; use types for more varied structures.
+
+# How TypeScript Compilation Works:
+
+You write .ts or .tsx files with TypeScript syntax.
+
+The TypeScript compiler (tsc) converts them into JavaScript files (.js).
+
+The output JavaScript is compatible with your target environment (browsers, Node.js).
+
+# Type Inference
+
+The compiler automatically figures out the type of a variable, function return, or expression when you don’t explicitly specify it. This makes your code cleaner while still benefiting from type safety.
+
+Examples of Type Inference:
+let count = 10; // inferred as number
+const message = "Hello TypeScript"; // inferred as string
+
+function add(a: number, b: number) {
+return a + b; // return type inferred as number
+}
+
+const arr = [1, 2, 3]; // inferred as number[]
+
+# Type-Safe Props
+
+Define an interface or type for your component props to explicitly state what props the component expects, along with their types.
+
+Example:
+
+type ButtonProps = {
+label: string;
+onClick: () => void;
+};
+
+# Optional Props
+
+You can mark props as optional by adding a ? after the prop name. The component can then be called with or without these props.
+
+Example:
+
+type UserCardProps = {
+name: string;
+age?: number; // optional prop
+};
+
+# Static typing vs Dynamic Typing
+
+Static typing checks variable types during compilation, ensuring high performance and early error detection (e.g., Java, C++).
+
+Dynamic typing checks types at runtime, offering faster prototyping and greater flexibility (e.g., Python, JavaScript), but risks unexpected errors during execution.
+
+# Type-safe API Data
+
+The practice of designing and implementing APIs in a way that ensures the data exchanged between the client and the server adheres to explicitly defined types or schemas, preventing type-related errors at both compile-time and runtime. This approach improves data integrity, enhances the developer experience (DX), and reduces the risk of bugs.
+
+EXAMPLE:
+
+type TMovies = {
+id: string;
+budget: string;
+cast: string;
+createdAt: string;
+director: string;
+movie: string;
+};
+
+async function getMovies() {
+try {
+const res = await axios.get(
+"https://69733836b5f46f8b582687ec.mockapi.io/movies_app/movies",
+);
+return res.data as TMovies[];
+} catch (error) {
+throw new Error("Movies not found");
+}
+}
+
+# Literal Types
+
+It allows us to specify the exact value a variable can hold.
+
+type Direction = "east" | "west" | "north" | "south"
+
+let move: Direction
+
+move = "south" // it's valid
+
+# Context API Providers and useContext
+
+Context API is React's built-in solution for sharing data across component trees without prop drilling (passing props through every level). It consists of:
+
+createContext() - Creates a context object
+Provider - Component that supplies the context value to its children
 useContext() - Hook that consumes the context value in any child component
+
+# React Ruoter with Typescript
+
+React Router is a library that provides routing capabilities for React applications.
+
+Routing means handling navigation between different views.
+
+React Router is the standard routing library for React applications. It enables you to:
+
+- Create multiple pages in your single-page application
+- Handle URL parameters and query strings
+- Manage browser history and navigation
+- Create nested routes and layouts
+- Implement protected routes for authentication
+
+# Install React Router as dev dependency
+
+1. npm install -D react-router-dom
+
+2. npm i -D @types/react-router-dom
+
+The @types/react-router-dom package provides type definitions for TypeScript, enabling type safety when using the react-router-dom library.
+
+3. Wrap Your App with BrowserRouter and import BrowserRouter
+
+function App() {
+return (
+<BrowserRouter>
+{/_ Your app content _}
+</BrowserRouter>
+);
+}
+
+To wrap <BrowserRouter> in typescript file, we should
+
+# Router Types:
+
+BrowserRouter - HTML5 history API routing (recommended)
+HashRouter - Hash-based routing for compatibility
+MemoryRouter - In-memory routing for testing
+StaticRouter - Server-side rendering support
+NativeRouter - React Native routing
+
+# Link Component in Router
+
+We must use Link instead of href to stop entire page from reloading.
+Link loads particular component only.
+
+# Link Component Benefits:
+
+1. No Page Reloads - Client-side navigation only
+2. State Preservation - Maintaining React component state
+3. Performance - Faster navigation than traditional links
+4. History Management - Proper browser history handling
+5. Programmatic Control - JavaScript-driven navigation
+
+# Advanced Link Features:
+
+1. NavLink for active styling
+2. Link state passing
+3. Conditional navigation
+4. External link handling
+5. Accessibility considerations
+
+# Browser History in ReactRouter
+
+React Router automatically manages history.
+
+# Layout Route
+
+Importance:
+
+1. Shared Components - Headers, footers, and sidebars
+2. Route Nesting - Organizing routes hierarchically
+3. Layout Composition - Building flexible layout systems
+4. Content Areas - Defining where child routes render
+5. Responsive Layouts - Adapting layouts for different screen sizes
+
+Implementation Patterns:
+
+1. Main application layout
+2. Dashboard layouts with sidebars
+3. Multi-column layouts
+4. Modal and overlay patterns
+5. Authenticated vs public layouts
+
+```
+EXAMPLE =
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Home } from "./Home";
+import { Users } from "./Users";
+import { Events } from "./Events";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* THIS 1ST ROUTE IS CALLED LAYOUT ROUTE WHICH HAS CHILDREN ROUTES */}
+        <Route path="/" element={<Home />}>
+          <Route path="/users" element={<Users />} />
+          <Route path="/events" element={<Events />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+
+```
+
+# The Outlet component
+
+It is not a built-in feature of React itself, but rather a core component of the React Router library, specifically used for nested routing. It acts as a placeholder in a parent component where child route elements are rendered.
+
+The primary use of <Outlet /> is to create persistent layouts (like a navigation bar, header, or footer) that remain visible while only the main content area changes dynamically based on the current URL.
+
+# Advanced Patterns of Outlet Component:
+
+1. Sidebar navigation with content areas
+2. Tab-based interfaces
+3. Master-detail views
+4. Multi-panel dashboards
+5. Conditional outlet rendering
+
+```
+import { Link, Outlet } from "react-router-dom";
+
+function Home() {
+  return (
+    <div>
+      <h2>Home Page</h2>
+      <br />
+      <Link to="/users">Go to Users Page</Link> <br />
+      <Link to="/events">Go to Events Page</Link>
+      {/* Components above outlet remain same, only child route elements are rendered.*/}
+      <Outlet />
+    </div>
+  );
+}
+export { Home };
+
+```
+
+# useNavigate Hook - To navigate to another page
+
+1. Programmatic Navigation - Navigate based on user actions
+2. Navigation Options - Replace, state, and relative navigation
+3. Route Parameters - Navigating with dynamic parameters
+4. Query Parameters - Including search parameters
+5. Navigation State - Passing state between routes
+
+# useNavigate Common Use Cases:
+
+1. Form submission redirects
+2. Authentication flows
+3. Conditional navigation
+4. Back button functionality
+5. Multi-step wizards and flows
+
+# useSearchParams
+
+It is used in React Router and Next.js to read and modify query string parameters from the URL (e.g., ?key=value).
+
+# useSearchParams Features:
+
+1. Reading Parameters - Accessing current search parameters
+2. Parameter Parsing - Converting strings to appropriate types
+3. Multiple Values - Handling parameters with multiple values
+4. Default Values - Providing fallbacks for missing parameters
+5. Type Safety - Working with TypeScript for parameter types
+
+# State Management:
+
+1. URL as single source of truth
+2. Syncing component state with URL
+3. Search and filter interfaces
+4. Pagination controls
+5. Shareable application states
+
+# useParams - Get URL Parameters
 
 # Tailwind CSS
 
