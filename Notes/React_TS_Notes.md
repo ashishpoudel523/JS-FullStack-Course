@@ -29,21 +29,19 @@ npm create vite@latest my-app --template react
 OR,
 
 npm create vite@latest
-project name:
+project name:./
 Select React
 Select Javascript / Typescript
 
 While creating react project if you don't want to create new folder as a new project name, you can write
 
-# Project name: ./
+Project name: ./
 
 Replace my-app with your desired project name.
 
-<!--
 npm install
 
 npm run dev
--->
 
 **_jsx = javascript xml = allows developers to write HTML-like markup directly within JavaScript code, most notably in the React library_**
 
@@ -96,15 +94,14 @@ Tool used to auto reload after making changes in the files.
 # Props
 
 A prop (short for property) is an input that you can pass to a component when rendering that component.
+
+```
 Eg.:
 Home.jsx
-
----
 
 function Home(){
 return (
 <>
-
 <h1>Props Demo</h1>
 <Card title = "card-design"/ >
 <Button text="Register" />
@@ -113,6 +110,8 @@ return (
 </>
 )
 }
+```
+
 where title is prop of Card and text is prop of Button Component.
 
 # Hooks
@@ -155,6 +154,7 @@ const [value, setValue] = userState(initialValue)
 
 To render the state value, you can embed it into JSX as follows:
 
+```
 import { useState } from 'react'
 
 function ParentComponent() {
@@ -169,6 +169,7 @@ return (
 }
 
 export default ParentComponent
+```
 
 2. **useEffect in React**
 
@@ -178,6 +179,7 @@ Syntax: useEffect(callback, [dependency_array]);
 
 Usage: Runs after the component renders or updates, useful for API calls, DOM manipulation.
 
+```
 Example:
 
 useEffect(() => {
@@ -186,10 +188,11 @@ return () => {
 // Cleanup logic here (optional)
 }
 }, [dependencies]);
+```
 
 # 3 Types of useEffect (based on Trigger point)
 
-# (a) useEffect with No Dependencies (Runs on Every Render):
+##### (a) useEffect with No Dependencies (Runs on Every Render):
 
 Runs all the time (every render). Good for general updates.
 
@@ -197,7 +200,7 @@ useEffect(() => {
 console.log("Component rendered or updated");
 });
 
-# (b) useEffect with an Empty Dependency Array:
+##### (b) useEffect with an Empty Dependency Array:
 
 Runs just once (on mount). Good for setup. setting up subscriptions that don’t need to change.
 
@@ -205,7 +208,7 @@ useEffect(() => {
 console.log("Component mounted");
 }, []);
 
-# (c) useEffect with Specific Dependencies Array (Runs When Dependencies Change):
+##### (c) useEffect with Specific Dependencies Array (Runs When Dependencies Change):
 
 Runs only when certain values change. Good for reacting to specific changes.
 
@@ -250,7 +253,7 @@ Example:
 const inputRef = useRef(null);
 inputRef.current.focus(); // Accesses the DOM element
 
-# To prevent page reload, we use e.preventDefault()
+#### To prevent page reload, we use e.preventDefault()
 
 It stops page from reloading after pressing submit button.
 
@@ -259,6 +262,69 @@ function handleSubmit(e) {
 e.preventDefault();
 console.log({ name, address, email });
 }
+
+# React API Call
+
+```
+import { useEffect, useState } from "react";
+// install axios => npm i axios
+import axios from "axios";
+
+function App() {
+  // State to store fetched data
+  // State to control loading UI
+  // State to store error message
+  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // ❌ useEffect callback itself CANNOT be async
+    //  ✔ define async function inside it
+    async function fetchTodos() {
+      try {
+        // Axios GET request
+        const response = await axios.get(
+          "https://jsonplaceholder.typicode.com/todos",
+        );
+
+        // Axios automatically parses JSON
+        // response.data contains the actual payload
+        setTodos(response.data.slice(0, 5));
+      } catch (err) {
+        // Axios throws error for non-2xx responses
+        // Prefer server message if available
+        setError(err.response?.statusText || err.message);
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchTodos();
+  }, []); // [] → runs only once when component mounts
+
+  // Loading state UI
+  if (loading) return <p>Loading...</p>;
+
+  // Error state UI
+  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+
+  return (
+    <div>
+      <h2>Todos</h2>
+      <ul>
+        {/* key is REQUIRED when rendering lists */}
+        {todos.map((todo) => (
+          <li key={todo.id}>{todo.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+```
 
 # Axios
 
@@ -275,6 +341,7 @@ Why Axios over fetch?
 - Request/response interceptors
 - Cleaner syntax
 
+```
 Example:
 import axios from "axios";
 
@@ -282,9 +349,9 @@ async function getUserData() {
 try {
 const url = "https://jsonplaceholder.typicode.com/posts";
 
-    const response = await axios.get(url);
+const response = await axios.get(url);
 
-    return response.data;
+return response.data;
 
 } catch (err) {
 console.log({ err });
@@ -293,6 +360,7 @@ throw err;
 }
 
 export { getUserData };
+```
 
 # Axios Instance
 
@@ -300,6 +368,7 @@ An Axios instance allows you to create a custom configuration for your HTTP requ
 
 Here's how to create and use an Axios instance:
 
+```
 EXAMPLE : -
 
 // File : users.js
@@ -328,6 +397,7 @@ throw err;
 
 export { getUserData };
 
+
 // File: App.jsx
 
 const [user, setUser] = useState(" ")
@@ -350,6 +420,7 @@ console.log({ users });
 // mathi ko "API" wala Button click garda, api bata user ko number 4 html ma print huna paryo
 
 Username from API = {user?.name} <br />
+```
 
 # 2 way binding
 
@@ -360,16 +431,17 @@ Use case = managing user input in forms and ensuring UI elements stay synchroniz
 
 Two way binding = state bata remove or add vako kura UI ma ni reflect huna value = {} use garni, submit garera sakesi, form ko UI pani clear garna lai use hunxa
 
+```
 const [name, setName] = useState("");
-
 <form>
-<input
-value={name}
-onChange={(e) => setName(e.target.value)}
-/>
+  <input
+  value={name}
+  onChange={(e) => setName(e.target.value)}
+  />
 </form>
 
 <p>Hello {name}!</p>
+```
 
 # Props Drilling
 
@@ -393,6 +465,7 @@ Why is it important?
 - Frees resources like timers or subscriptions.
 - Avoids updating state on unmounted components.
 
+```
 EXAMPLE =
 
 useEffect(() => {
@@ -403,6 +476,7 @@ return () => {
 console.log("bye");
 };
 }, [parentCount]);
+```
 
 # Debouncing - to stop hammering API
 
@@ -413,6 +487,7 @@ Wait 1000ms of inactivity → then search.
 
 - Use case = Handling user input (e.g., search bars) to avoid making API calls on every keystroke.
 
+```
 EXAMPLE =
 
 useEffect(() => {
@@ -420,11 +495,12 @@ const timer = setTimeout(() => {
 setDebounceValue(inputValue);
 }, 1000);
 
-    return () => {
-      clearTimeout(timer); //debouncing
-    };
+return () => {
+clearTimeout(timer); //debouncing
+};
 
 }, [inputValue]);
+```
 
 # CUSTOM HOOK - ABSTRACT LOGIC THAT CAN BE USED WHEREVER REQUIRED
 
@@ -437,6 +513,7 @@ Why use Custom Hooks?
 - To abstract and reuse complex logic.
 - To keep components focused on UI.
 
+```
 EXAMPLE =
 
 // CUSTOM HOOK = RESUABLE FUNCTION WITHOUT DUPLICATING CODE
@@ -456,6 +533,7 @@ setDebounceValue(inputValue);
 
 return debounceValue;
 }
+```
 
 # Derived State
 
@@ -473,7 +551,8 @@ const greeting = "Good morning " + myName
 - This helps optimize performance by avoiding unnecessary recalculations on every render.
 - Useful for derived data that depends on props or state.
 
-- EXAMPLE =
+```
+EXAMPLE =
 
 const id2User = useMemo(() => {
 const foundUser = users.find((item) => {
@@ -502,6 +581,7 @@ const sayHello = useCallback(() => {
 alert('Hello!');
 }, []);
 // ☝️ This is created ONCE and reused
+```
 
 # ContextAPI
 
@@ -565,13 +645,11 @@ age?: number; // optional property
 # Interfaces
 
 - Created using the interface keyword.
-
 - Used mainly to describe the shape of an object.
-
 - Can be extended or implemented by classes.
-
 - Supports declaration merging (interfaces with the same name merge).
 
+```
 Example of simple interface:
 
 interface User {
@@ -579,6 +657,7 @@ id: number;
 name: string;
 age?: number; // optional property
 }
+```
 
 # Differences
 
@@ -600,6 +679,7 @@ The output JavaScript is compatible with your target environment (browsers, Node
 
 The compiler automatically figures out the type of a variable, function return, or expression when you don’t explicitly specify it. This makes your code cleaner while still benefiting from type safety.
 
+```
 Examples of Type Inference:
 let count = 10; // inferred as number
 const message = "Hello TypeScript"; // inferred as string
@@ -609,28 +689,33 @@ return a + b; // return type inferred as number
 }
 
 const arr = [1, 2, 3]; // inferred as number[]
+```
 
 # Type-Safe Props
 
 Define an interface or type for your component props to explicitly state what props the component expects, along with their types.
 
+```
 Example:
 
 type ButtonProps = {
 label: string;
 onClick: () => void;
 };
+```
 
 # Optional Props
 
 You can mark props as optional by adding a ? after the prop name. The component can then be called with or without these props.
 
+```
 Example:
 
 type UserCardProps = {
 name: string;
 age?: number; // optional prop
 };
+```
 
 # Static typing vs Dynamic Typing
 
@@ -642,6 +727,7 @@ Dynamic typing checks types at runtime, offering faster prototyping and greater 
 
 The practice of designing and implementing APIs in a way that ensures the data exchanged between the client and the server adheres to explicitly defined types or schemas, preventing type-related errors at both compile-time and runtime. This approach improves data integrity, enhances the developer experience (DX), and reduces the risk of bugs.
 
+```
 EXAMPLE:
 
 type TMovies = {
@@ -663,24 +749,76 @@ return res.data as TMovies[];
 throw new Error("Movies not found");
 }
 }
+```
 
 # Literal Types
 
 It allows us to specify the exact value a variable can hold.
 
+```
 type Direction = "east" | "west" | "north" | "south"
 
 let move: Direction
 
 move = "south" // it's valid
+```
 
 # Context API Providers and useContext
 
+Solves the problem of => Props Drilling
+
 Context API is React's built-in solution for sharing data across component trees without prop drilling (passing props through every level). It consists of:
 
-createContext() - Creates a context object
-Provider - Component that supplies the context value to its children
-useContext() - Hook that consumes the context value in any child component
+- createContext() - Creates a context object
+- Provider - Component that supplies the context value to its children
+- useContext() - Hook that consumes the context value in any child component
+
+```
+EXAMPLE:
+
+import { useState, createContext, useContext } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const UserContext = createContext();
+
+function App() {
+  const [user, setUser] = useState("Linus");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>{`Hello ${user}!`}</h1>
+      <Component2 />
+    </UserContext.Provider>
+  );
+}
+
+function Component2() {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 />
+    </>
+  );
+}
+
+function Component3() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 3</h1>
+      <h2>{`Hello ${user} again!`}</h2>
+    </>
+  );
+}
+
+createRoot(document.getElementById('root')).render(
+  <App/>
+);
+
+
+
+```
 
 # React Ruoter with Typescript
 
@@ -706,6 +844,7 @@ The @types/react-router-dom package provides type definitions for TypeScript, en
 
 3. Wrap Your App with BrowserRouter and import BrowserRouter
 
+```
 function App() {
 return (
 <BrowserRouter>
@@ -713,16 +852,17 @@ return (
 </BrowserRouter>
 );
 }
+```
 
-To wrap <BrowserRouter> in typescript file, we should
+To wrap <BrowserRouter> in typescript file, we should import it.
 
 # Router Types:
 
-BrowserRouter - HTML5 history API routing (recommended)
-HashRouter - Hash-based routing for compatibility
-MemoryRouter - In-memory routing for testing
-StaticRouter - Server-side rendering support
-NativeRouter - React Native routing
+1. BrowserRouter - HTML5 history API routing (recommended)
+2. HashRouter - Hash-based routing for compatibility
+3. MemoryRouter - In-memory routing for testing
+4. StaticRouter - Server-side rendering support
+5. NativeRouter - React Native routing
 
 # Link Component in Router
 
@@ -775,17 +915,17 @@ import { Users } from "./Users";
 import { Events } from "./Events";
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {/* THIS 1ST ROUTE IS CALLED LAYOUT ROUTE WHICH HAS CHILDREN ROUTES */}
-        <Route path="/" element={<Home />}>
-          <Route path="/users" element={<Users />} />
-          <Route path="/events" element={<Events />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+return (
+<BrowserRouter>
+<Routes>
+{/_ THIS 1ST ROUTE IS CALLED LAYOUT ROUTE WHICH HAS CHILDREN ROUTES _/}
+<Route path="/" element={<Home />}>
+<Route path="/users" element={<Users />} />
+<Route path="/events" element={<Events />} />
+</Route>
+</Routes>
+</BrowserRouter>
+);
 }
 
 export default App;
@@ -807,19 +947,20 @@ The primary use of <Outlet /> is to create persistent layouts (like a navigation
 5. Conditional outlet rendering
 
 ```
+
 import { Link, Outlet } from "react-router-dom";
 
 function Home() {
-  return (
-    <div>
-      <h2>Home Page</h2>
-      <br />
-      <Link to="/users">Go to Users Page</Link> <br />
-      <Link to="/events">Go to Events Page</Link>
-      {/* Components above outlet remain same, only child route elements are rendered.*/}
-      <Outlet />
-    </div>
-  );
+return (
+<div>
+<h2>Home Page</h2>
+<br />
+<Link to="/users">Go to Users Page</Link> <br />
+<Link to="/events">Go to Events Page</Link>
+{/_ Components above outlet remain same, only child route elements are rendered._/}
+<Outlet />
+</div>
+);
 }
 export { Home };
 

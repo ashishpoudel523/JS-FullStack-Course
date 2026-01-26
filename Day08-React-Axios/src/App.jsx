@@ -17,6 +17,8 @@ const App = () => {
   // first ma false, submit hunjel true, last ma feri false
   const [submitting, setSubmitting] = useState(false);
 
+  const [submittedData, setSubmittedData] = useState(null);
+
   //"Ref Button" click geresi, useRef apply garni function
   function handleButton() {
     inputRef.current.focus();
@@ -43,6 +45,9 @@ const App = () => {
     await createUser(formData);
     setSubmitting(false);
     alert(`Form submitted with name: ${name}`);
+
+    // store submitted data for display
+    setSubmittedData(formData);
 
     // submit garera sakesi, form clear garni
     // ani yo khali state tala ko value = {name} ma gayera basxa - yeslai 2 way binding vaninxa
@@ -99,6 +104,15 @@ const App = () => {
           {submitting ? "Submitting....." : "SUBMIT"}
         </button>
       </form>
+      <br />
+      {submittedData && (
+        <div>
+          <h2>Submitted Details</h2>
+          Name: {submittedData.name} <br />
+          Address: {submittedData.address} <br />
+          Email: {submittedData.email} <br />
+        </div>
+      )}
       <br />
       <button onClick={() => handleButton()}>Ref Button </button>
       <br /> <br />
