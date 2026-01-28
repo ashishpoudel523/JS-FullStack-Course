@@ -951,16 +951,16 @@ The primary use of <Outlet /> is to create persistent layouts (like a navigation
 import { Link, Outlet } from "react-router-dom";
 
 function Home() {
-return (
-<div>
-<h2>Home Page</h2>
-<br />
-<Link to="/users">Go to Users Page</Link> <br />
-<Link to="/events">Go to Events Page</Link>
-{/_ Components above outlet remain same, only child route elements are rendered._/}
-<Outlet />
-</div>
-);
+  return (
+    <div>
+      <h2>Home Page</h2>
+      <br />
+      <Link to="/users">Go to Users Page</Link> <br />
+      <Link to="/events">Go to Events Page</Link>
+      {/_ Components above outlet remain same, only child route elements are rendered._/}
+      <Outlet />
+    </div>
+  );
 }
 export { Home };
 
@@ -982,11 +982,32 @@ export { Home };
 4. Back button functionality
 5. Multi-step wizards and flows
 
+```
+import { useNavigate } from "react-router-dom";
+
+function Events() {
+  const navigation = useNavigate();
+  function handleGotoUsers() {
+    navigation({ pathname: "/users", search: "?id=10&from=events" });
+  }
+
+  return (
+    <div>
+      <h3>Events Page</h3>
+      <button onClick={handleGotoUsers}>Users</button>
+    </div>
+  );
+}
+
+export { Events };
+
+```
+
 # useSearchParams
 
 It is used in React Router and Next.js to read and modify query string parameters from the URL (e.g., ?key=value).
 
-# useSearchParams Features:
+### useSearchParams Features:
 
 1. Reading Parameters - Accessing current search parameters
 2. Parameter Parsing - Converting strings to appropriate types
@@ -994,7 +1015,7 @@ It is used in React Router and Next.js to read and modify query string parameter
 4. Default Values - Providing fallbacks for missing parameters
 5. Type Safety - Working with TypeScript for parameter types
 
-# State Management:
+### useSearchParams for State Management:
 
 1. URL as single source of truth
 2. Syncing component state with URL
@@ -1002,7 +1023,98 @@ It is used in React Router and Next.js to read and modify query string parameter
 4. Pagination controls
 5. Shareable application states
 
+```
+EXAMPLE OF useSearchParams, setSearchParams
+
+import { useSearchParams } from "react-router-dom";
+
+function Users() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  console.log("id is", searchParams.get("id"));
+  console.log("from", searchParams.get("from"));
+  return (
+    <div>
+      <h2>Users Page</h2>
+
+      <button
+        onClick={() => {
+          setSearchParams({ id: "20", from: "events" });
+        }}
+      >
+        Change Query Params
+      </button>
+    </div>
+  );
+}
+
+export { Users };
+
+```
+
+# Advanced URL Parameters
+
+Explore advanced URL parameter patterns and techniques for building sophisticated routing systems.
+
+### Advanced Patterns:
+
+- Nested Parameters - Multi-level parameter structures
+- Optional Parameters - Making parameters optional with ?
+- Wildcard Parameters - Using \* for catch-all routes
+- Parameter Validation - Ensuring parameter formats
+- Parameter Transformation - Converting and processing parameters
+
+### Complex Scenarios:
+
+- Multi-tenant applications
+- Internationalization (i18n) routing
+- Version-specific routes
+- A/B testing parameter handling
+- Custom parameter parsing logic
+
 # useParams - Get URL Parameters
+
+useParams hook to extract and utilize URL parameters in your React components effectively.
+
+### useParams Hook:
+
+- Parameter Extraction - Getting values from URL segments
+- Type Safety - TypeScript integration for parameters
+- Multiple Parameters - Handling complex parameter combinations
+- Parameter Validation - Ensuring parameter existence and format
+- Default Handling - Managing missing or invalid parameters
+
+### Implementation Best Practices:
+
+- Parameter type conversion
+- Error handling for invalid parameters
+- Caching and memoization
+- Integration with data fetching
+- Parameter-based component rendering
+
+```
+EXAMPLE:
+
+import { useParams } from "react-router-dom";
+
+function SingleUser() {
+  const { username } = useParams();
+  return (
+    <div>
+      <h2>I am SingleUser my username is: {username} </h2>
+    </div>
+  );
+}
+
+export { SingleUser };
+
+```
+
+# React Redux
+
+    npm i @reduxjs/toolkit
+
+    npm i react-redux
 
 # Tailwind CSS
 
