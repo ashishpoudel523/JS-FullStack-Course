@@ -16,7 +16,7 @@ type User<IdType> = {
   address?: string;
 };
 
-// GENERICS
+// JUST GENERICS EXAMPLE
 const user: User<number> = {
   id: 23,
 };
@@ -42,9 +42,10 @@ function App() {
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     // to avoid whole page refresh/reload
     e.preventDefault();
-    const todoItem = { id: Math.random.toString(), text: input };
+    const todoItem = { id: Math.random().toString(), text: input };
     // purano todos haru spread vayera ...todos ma basxa, naya todos aayera todoItem ma basxa
     setTodos([...todos, todoItem]);
+    setInput("");
   }
 
   function handleTodoDelete(id: string) {
@@ -62,6 +63,7 @@ function App() {
       >
         <input
           type="text"
+          value={input}
           onChange={(e) => {
             setInput(e.target.value);
           }}
@@ -73,7 +75,7 @@ function App() {
           return (
             <div>
               {/* list render garna lai map use garna parxa */}
-              <p key="item.id">{item.text}</p>
+              <p key={item.id}>{item.text}</p>
               <button onClick={() => handleTodoDelete(item.id)}>Delete</button>
             </div>
           );

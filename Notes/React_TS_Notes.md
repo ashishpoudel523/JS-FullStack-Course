@@ -1116,6 +1116,37 @@ export { SingleUser };
 
     npm i react-redux
 
+In Redux, actions are objects that describe what happened in an application, while reducers are pure functions that take an action and the current state to calculate the next state. They are fundamental parts of the predictable one-way data flow in Redux.
+Actions
+Actions are the sole source of information for the Redux store.
+Plain Objects: Actions are simple, plain JavaScript objects.
+type Property: Every action must have a type field, usually a string constant (e.g., 'todos/todoAdded'), which indicates the kind of action being performed.
+Payload: They can also include a payload field containing any additional data needed for the state update (e.g., the text of a new todo item).
+Event Description: You can think of an action as an event that occurred in the application, but it does not contain the logic for how the state changes.
+Action Creators: Functions called "action creators" are often used to generate and return action objects, which helps in making the code reusable and organized.
+Example Action Object:
+javascript
+const addTodoAction = {
+type: 'todos/todoAdded',
+payload: 'Buy milk'
+};
+
+Reducers
+Reducers are the functions that specify how the application's state changes in response to an action.
+Pure Functions: Reducers must be pure functions. They take the (state, action) as arguments and return a newState without causing any side effects (like API calls or random number generation) or modifying the original state directly.
+Immutability: Reducers must make immutable updates. This means they should make copies of the existing state (or the parts that need updating) and modify the copies, then return the new object/array.
+State Logic: They contain the core logic for state transitions. A single action might be handled by multiple reducers, each updating a different "slice" of the overall state.
+Structure: The logic inside a reducer typically uses switch statements or lookup tables (or Redux Toolkit's createReducer utility which uses Immer for easier immutable updates) to determine how to update the state based on the action's type.
+Example Reducer Function (using Redux Toolkit's createSlice for simplicity):
+For an example of a simple counter reducer using createSlice from @reduxjs/toolkit including the full code, refer to Redux website.
+Summary of Differences
+Here's a table summarizing key differences:
+Feature Action Reducer
+Purpose Describes what happened (an event) Determines how state changes
+Type A plain JavaScript object A pure function
+Side Effects Can be part of process for triggering side effects Must not have side effects
+Mutation Contains data/payloads Must not mutate original state
+
 # Tailwind CSS
 
 # Install Tailwind CSS with React Vite
