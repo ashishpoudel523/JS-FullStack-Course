@@ -1114,6 +1114,75 @@ export { SingleUser };
 
 # Generics in React Typescript
 
+Generics allow you to create reusable components that work with multiple types while maintaining type safety. They're like placeholders for types that get filled in when the component is used.
+
+#### Why Use Generics?
+
+1. Create flexible, reusable components
+2. Maintain strong type checking
+3. Avoid code duplication
+4. Better IntelliSense and autocomplete
+
+```
+EXAMPLE:-
+
+import React from 'react';
+
+// Define props with a generic type T
+interface ListProps<T> {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+}
+
+// Generic functional component
+function List<T>({ items, renderItem }: ListProps<T>) {
+  return (
+    <ul>
+      {items.map((item, index) => (
+        <li key={index}>{renderItem(item)}</li>
+      ))}
+    </ul>
+  );
+}
+
+// Usage Example 1: List of strings
+function App() {
+  const fruits = ['Apple', 'Banana', 'Orange'];
+
+  return (
+    <List
+      items={fruits}
+      renderItem={(fruit) => <span>{fruit}</span>}
+    />
+  );
+}
+
+// Usage Example 2: List of objects
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function UserList() {
+  const users: User[] = [
+    { id: 1, name: 'Alice', email: 'alice@example.com' },
+    { id: 2, name: 'Bob', email: 'bob@example.com' }
+  ];
+
+  return (
+    <List
+      items={users}
+      renderItem={(user) => (
+        <div>
+          <strong>{user.name}</strong> - {user.email}
+        </div>
+      )}
+    />
+  );
+}
+```
+
 # React Redux
 
     npm i @reduxjs/toolkit
@@ -1341,11 +1410,34 @@ const dispatch = useDispatch();
 dispatch(myAction(newValue));
 ```
 
+# Shadcn / UI & Design Systems
+
+A component library built on top of Radix UI + Tailwind CSS.
+
+```
+npm i tailwindcss @tailwindcss/vite
+
+Replace everything in src/index.css with
+@import "tailwindcss";
+
+Edit tsconfig.json file
+
+Edit tsconfig.app.json file
+
+Update vite.config.ts
+
+npm i -D @types/node
+npx shadcn@latest init
+
+To add button:
+npx shadcn@latest add button
+```
+
 # Tailwind CSS
 
 # Install Tailwind CSS with React Vite
 
-npm install -D tailwind postcss autoprefiser
+npm install -D tailwind postcss autoprefixer
 npx tailwindcss init -p
 
 TypeScript
