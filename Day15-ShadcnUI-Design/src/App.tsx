@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ThemeProvider } from "./components/theme-provider";
 import { ModeToggle } from "./components/mode-toggle";
+import { Menubar } from "./components/ui/menubar";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="flex min-h-svh flex-col items-center justify-center">
+        <Menubar />
         <Button variant={"default"}>Click me</Button>
         <div className="text-red-500 text-xl font-bold">
           Tailwind is working
