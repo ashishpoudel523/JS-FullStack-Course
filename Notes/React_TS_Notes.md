@@ -1429,6 +1429,8 @@ Update vite.config.ts
 npm i -D @types/node
 npx shadcn@latest init
 
+## LOOK AT THE SHADCN WEBSITE FOR DETAILS
+
 To add button:
 npx shadcn@latest add button
 ```
