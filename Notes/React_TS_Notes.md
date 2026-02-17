@@ -1415,10 +1415,14 @@ dispatch(myAction(newValue));
 A component library built on top of Radix UI + Tailwind CSS.
 
 ```
+npm create vite@latest
+
 npm i tailwindcss @tailwindcss/vite
 
 Replace everything in src/index.css with
 @import "tailwindcss";
+
+For full process, Look at https://ui.shadcn.com/docs/installation/vite
 
 Edit tsconfig.json file
 
@@ -1428,8 +1432,6 @@ Update vite.config.ts
 
 npm i -D @types/node
 npx shadcn@latest init
-
-## LOOK AT THE SHADCN WEBSITE FOR DETAILS
 
 To add button:
 npx shadcn@latest add button
