@@ -533,6 +533,8 @@ setDebounceValue(inputValue);
 
 return debounceValue;
 }
+
+const debValue = useDebounce(inputValue, 600)
 ```
 
 # Derived State
@@ -541,7 +543,15 @@ const [myName, setMyName] = useState("Ashish");
 const greeting = "Good morning " + myName
 
 // Derived state - derived from existing props or state, rather than stored separately
-// don't use "useEffect" coz it can lead to unnecessary complexity and bugs.
+// don't use "useEffect" fro derived state becoz it can lead to unnecessary complexity and bugs.
+
+// Bad
+useEffect(() => {
+setDouble(count \* 2);
+}, [count]);
+
+// Good
+const double = count \* 2;
 
 # useMemo Hook = to cache expensive calculations
 
@@ -565,11 +575,13 @@ return item;
     return foundUser;
 
 }, [users]);
+```
 
 # useCallback = to keep function cached
 
 = It lets us cache/memoize a function definition between re-renders.
 
+```
 // WITHOUT useCallback
 const sayHello = () => {
 alert('Hello!');
@@ -763,7 +775,7 @@ let move: Direction
 move = "south" // it's valid
 ```
 
-# Context API Providers and useContext
+# Context API, Providers and useContext
 
 Solves the problem of => Props Drilling
 
