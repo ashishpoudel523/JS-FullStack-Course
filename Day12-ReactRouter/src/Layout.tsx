@@ -1,9 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
 
-function Home() {
+function Layout() {
   return (
     <div>
-      <h2>Home Page</h2>
+      <h2>Home Page, I don't change</h2>
       <br />
       <Link to="/users">Go to Users Page</Link> <br />
       <Link to="/events">Go to Events Page</Link>
@@ -13,4 +13,4 @@ function Home() {
   );
 }
 
-export { Home };
+export { Layout };

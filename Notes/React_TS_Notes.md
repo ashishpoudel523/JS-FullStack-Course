@@ -827,12 +827,9 @@ function Component3() {
 createRoot(document.getElementById('root')).render(
   <App/>
 );
-
-
-
 ```
 
-# React Ruoter with Typescript
+# React Router with Typescript
 
 React Router is a library that provides routing capabilities for React applications.
 
@@ -948,24 +945,16 @@ export default App;
 
 It is not a built-in feature of React itself, but rather a core component of the React Router library, specifically used for nested routing. It acts as a placeholder in a parent component where child route elements are rendered.
 
-The primary use of <Outlet /> is to create persistent layouts (like a navigation bar, header, or footer) that remain visible while only the main content area changes dynamically based on the current URL.
-
-# Advanced Patterns of Outlet Component:
-
-1. Sidebar navigation with content areas
-2. Tab-based interfaces
-3. Master-detail views
-4. Multi-panel dashboards
-5. Conditional outlet rendering
+The primary use of <Outlet /> is to create persistent layouts (like a navigation bar, sidebar, header, or footer) that remain visible while only the main content area changes dynamically based on the current URL.
 
 ```
 
 import { Link, Outlet } from "react-router-dom";
 
-function Home() {
+function Layout() {
   return (
     <div>
-      <h2>Home Page</h2>
+      <h2>Layout Page</h2>
       <br />
       <Link to="/users">Go to Users Page</Link> <br />
       <Link to="/events">Go to Events Page</Link>
@@ -1157,42 +1146,6 @@ function List<T>({ items, renderItem }: ListProps<T>) {
   );
 }
 
-// Usage Example 1: List of strings
-function App() {
-  const fruits = ['Apple', 'Banana', 'Orange'];
-
-  return (
-    <List
-      items={fruits}
-      renderItem={(fruit) => <span>{fruit}</span>}
-    />
-  );
-}
-
-// Usage Example 2: List of objects
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
-function UserList() {
-  const users: User[] = [
-    { id: 1, name: 'Alice', email: 'alice@example.com' },
-    { id: 2, name: 'Bob', email: 'bob@example.com' }
-  ];
-
-  return (
-    <List
-      items={users}
-      renderItem={(user) => (
-        <div>
-          <strong>{user.name}</strong> - {user.email}
-        </div>
-      )}
-    />
-  );
-}
 ```
 
 # React Redux
@@ -1455,6 +1408,8 @@ npx shadcn@latest add button
 
 npm install -D tailwind postcss autoprefixer
 npx tailwindcss init -p
+
+---
 
 TypeScript
 Type Annotations
