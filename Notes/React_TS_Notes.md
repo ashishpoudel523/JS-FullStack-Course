@@ -1148,12 +1148,6 @@ function List<T>({ items, renderItem }: ListProps<T>) {
 
 ```
 
-# React Redux
-
-    npm i @reduxjs/toolkit
-
-    npm i react-redux
-
 # React Redux Notes
 
 Redux is a **predictable state management library** for JavaScript applications. It helps you manage the global state of your application in a centralized store.
