@@ -13,13 +13,7 @@ React allows us to create reusable UI components.
 
 Creating a React app using Vite is a great alternative to Create React App, offering a faster and more modern development experience. Vite is a build tool that focuses on speed and performance, making it an excellent choice for modern web development.
 
-# Create new project (CRA)
-
-npx create-react-app my-frontend-app
-cd my-frontend-app
-npm start
-
-# Here’s a step-by-step guide to creating a React app using Vite:
+# Creating a React app using Vite:
 
 Install Node.js: Ensure you have Node.js installed on your machine. You can download it from nodejs.org.
 
@@ -44,6 +38,12 @@ npm install
 npm run dev
 
 **_jsx = javascript xml = allows developers to write HTML-like markup directly within JavaScript code, most notably in the React library_**
+
+# Create new project (CRA)
+
+npx create-react-app my-frontend-app
+cd my-frontend-app
+npm start
 
 # Why Choose Vite?
 
