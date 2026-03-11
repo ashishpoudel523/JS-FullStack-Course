@@ -33,6 +33,25 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  background-color: green;
+  color: white;
+  padding: 15px 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.btn {
+  background-color: #646cff;
+  color: white;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 22px;
+  margin: 15px;
+  border: none;
 }
 
 button {
