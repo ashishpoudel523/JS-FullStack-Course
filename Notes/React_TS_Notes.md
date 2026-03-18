@@ -1407,13 +1407,7 @@ npx tailwindcss init -p
 
 React Query (now officially known as TanStack Query) is a powerful asynchronous state management library for React and other web frameworks. It simplifies the process of fetching, caching, synchronizing, and updating "server state"—data that lives on a remote server—without requiring complex global state logic like Redux.
 TanStack
-TanStack
-+2
-Core Functionalities
-Automatic Caching: It stores fetched data and serves it immediately on subsequent requests, reducing loading spinners.
-Stale-While-Revalidate: While showing cached data, it can silently refetch in the background to ensure information remains up-to-date.
-Auto-Refetching: Queries can be configured to refetch automatically on window focus, network reconnection, or at specific intervals.
-Mutations: Use the useMutation hook to handle server-side data modifications (e.g., POST, PUT, DELETE) with support for optimistic update
+
 
 ---
 
