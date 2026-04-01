@@ -24,18 +24,6 @@ const App = () => {
     inputRef.current.focus();
   }
 
-  // jsoplaceholder bata users fetch garni function
-  const apiCall = async () => {
-    try {
-      const users = await getUserData();
-      console.log({ users });
-
-      setUser(users[9]);
-    } catch (e) {
-      console.log({ e });
-    }
-  };
-
   // form submit vayesi apply huni function,
   async function handleSubmit(e) {
     // to prevent page reload, we use e.preventDefault()
@@ -57,6 +45,18 @@ const App = () => {
   }
 
   console.log({ submitting });
+
+  // jsoplaceholder bata users fetch garni function
+  const apiCall = async () => {
+    try {
+      const users = await getUserData();
+      console.log({ users });
+
+      setUser(users[9]);
+    } catch (e) {
+      console.log({ e });
+    }
+  };
 
   return (
     <>

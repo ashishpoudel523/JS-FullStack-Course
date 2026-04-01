@@ -2,7 +2,7 @@ import MyButton from "./MyButton";
 import "./App.css";
 
 function App() {
-  const x = 5;
+  const x = 15;
   const res = x < 10 ? "Hello" : "Bye";
   console.log(res);
   return (
