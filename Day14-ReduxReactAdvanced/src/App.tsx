@@ -14,6 +14,7 @@ function App() {
     <div className={`main-${theme}`}>
       <ManageTheme />
       <h2>React Redux - Todo App</h2>
+      <h3>Hello React</h3>
       <AddTodo />
     </div>
   );
