@@ -13,6 +13,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/LogoutDialog";
+import { Table } from "./components/ui/table";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           </AlertDialogContent>
         </AlertDialog>
         <Dashboard />
+        <Table />
       </ThemeProvider>
     </div>
   );
