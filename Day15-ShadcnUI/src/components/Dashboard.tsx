@@ -10,7 +10,6 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
   PieChart,
@@ -37,6 +36,7 @@ import {
   TrendingUp,
   DollarSign,
 } from "lucide-react";
+import { LogoutDialog } from "./LogoutDialog";
 
 // User growth data
 const userGrowthData = [
@@ -132,6 +132,9 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="p-8 max-w-7xl mx-auto">
+        <div className="flex item-center justify-end">
+          <LogoutDialog />
+        </div>
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">
