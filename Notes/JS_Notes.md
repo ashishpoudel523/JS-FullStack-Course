@@ -4,7 +4,6 @@
 - built in functions and logics
 - maintained by EcmaScript
 - makes UI interactive
-- and
 
 # JS is Single threaded but its non-blocking IO
 
